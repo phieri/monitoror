@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"net/url"
 	"testing"
 
 	"github.com/monitoror/monitoror/api/config/models"
@@ -123,24 +124,33 @@ func TestUsecase_Hydrate_WithNilParams(t *testing.T) {
 {
   "columns": 4,
   "tiles": [
+    { "type": "PING", "params": { "hostname": "aserver.com", "values": [123] } },
     { "type": "PING", "params": { "hostname": null, "values": [null, 123] } }
   ]
 }
 `
 
-usecase := initConfigUsecase(nil)
-config, err := readConfig(input)
-assert.NoError(t, err)
+	usecase := initConfigUsecase(nil)
+	config, err := readConfig(input)
+	assert.NoError(t, err)
 
-usecase.Hydrate(config)
-assert.Len(t, config.Errors, 0)
-assert.Contains(t, config.Config.Tiles[0].URL, "hostname=")
-assert.Contains(t, config.Config.Tiles[0].URL, "values=")
-assert.Contains(t, config.Config.Tiles[0].URL, "values=123")
+	usecase.Hydrate(config)
+	assert.Empty(t, config.Errors)
+
+	parsedURL, err := url.Parse(config.Config.Tiles[0].URL)
+	assert.NoError(t, err)
+	assert.Equal(t, []string{"aserver.com"}, parsedURL.Query()["hostname"])
+	assert.Equal(t, []string{"123"}, parsedURL.Query()["values"])
+
+	parsedURL, err = url.Parse(config.Config.Tiles[1].URL)
+	assert.NoError(t, err)
+	query := parsedURL.Query()
+	assert.Equal(t, []string{""}, query["hostname"])
+	assert.Equal(t, []string{"", "123"}, query["values"])
 }
 
 func TestUsecase_Hydrate_WithGeneratorEmpty(t *testing.T) {
-input := `
+	input := `
 {
   "columns": 4,
   "tiles": [
