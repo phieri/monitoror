@@ -118,8 +118,29 @@ func TestUsecase_Hydrate_WithGenerator(t *testing.T) {
 	assert.Equal(t, "Test Label", config.Config.Tiles[3].Tiles[0].Label)
 }
 
-func TestUsecase_Hydrate_WithGeneratorEmpty(t *testing.T) {
+func TestUsecase_Hydrate_WithNilParams(t *testing.T) {
 	input := `
+{
+  "columns": 4,
+  "tiles": [
+    { "type": "PING", "params": { "hostname": null, "values": [null, 123] } }
+  ]
+}
+`
+
+usecase := initConfigUsecase(nil)
+config, err := readConfig(input)
+assert.NoError(t, err)
+
+usecase.Hydrate(config)
+assert.Len(t, config.Errors, 0)
+assert.Contains(t, config.Config.Tiles[0].URL, "hostname=")
+assert.Contains(t, config.Config.Tiles[0].URL, "values=")
+assert.Contains(t, config.Config.Tiles[0].URL, "values=123")
+}
+
+func TestUsecase_Hydrate_WithGeneratorEmpty(t *testing.T) {
+input := `
 {
   "columns": 4,
   "tiles": [

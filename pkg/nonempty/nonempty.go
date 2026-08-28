@@ -158,5 +158,19 @@ func Struct(value, def interface{}) interface{} {
 }
 
 func isZero(x interface{}) bool {
-	return reflect.DeepEqual(x, reflect.Zero(reflect.TypeOf(x)).Interface())
+	if x == nil {
+		return true
+	}
+
+	v := reflect.ValueOf(x)
+	if !v.IsValid() {
+		return true
+	}
+
+	switch v.Kind() {
+	case reflect.Chan, reflect.Func, reflect.Interface, reflect.Map, reflect.Ptr, reflect.Slice:
+		return v.IsNil()
+	default:
+		return v.IsZero()
+	}
 }

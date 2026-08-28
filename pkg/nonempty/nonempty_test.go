@@ -143,4 +143,12 @@ func TestStruct(t *testing.T) {
 	a, b, d = Data{"a", 10}, Data{"b", 10}, Data{"d", 30}
 	assert.Equal(t, a, Struct(a, b))
 	assert.Equal(t, d, Struct(c, d))
+	assert.Equal(t, "fallback", Struct(nil, "fallback"))
+}
+
+func TestNilValues(t *testing.T) {
+	assert.Equal(t, "fallback", String("", "fallback"))
+	assert.Equal(t, "fallback", Struct(nil, "fallback"))
+	assert.Equal(t, time.Second, Duration(0, time.Second))
+	assert.Equal(t, time.Second, Duration(time.Second, time.Minute))
 }

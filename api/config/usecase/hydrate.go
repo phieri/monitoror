@@ -65,14 +65,26 @@ func (cu *configUsecase) hydrateTile(configBag *models.ConfigBag, tile *models.T
 	// Change Params by a valid URL
 	urlParams := url.Values{}
 	for key, value := range tile.Params {
-		// Array of value
-		if reflect.TypeOf(value).Kind() == reflect.Slice {
-			for _, v := range value.([]interface{}) {
-				urlParams.Add(key, humanize.Interface(v))
-			}
-		} else {
-			urlParams.Add(key, humanize.Interface(value))
+		if value == nil {
+			urlParams.Add(key, "")
+			continue
 		}
+
+		valueOf := reflect.ValueOf(value)
+		if !valueOf.IsValid() {
+			urlParams.Add(key, "")
+			continue
+		}
+
+		if valueOf.Kind() == reflect.Slice || valueOf.Kind() == reflect.Array {
+			for i := 0; i < valueOf.Len(); i++ {
+				item := valueOf.Index(i).Interface()
+				urlParams.Add(key, humanize.Interface(item))
+			}
+			continue
+		}
+
+		urlParams.Add(key, humanize.Interface(value))
 	}
 	tile.URL = fmt.Sprintf("%s?%s", *tileVariantMetadata.RoutePath, urlParams.Encode())
 

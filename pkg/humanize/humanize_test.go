@@ -16,7 +16,8 @@ func TestGetHumanizeInterface(t *testing.T) {
 
 	var test *string
 	assert.Equal(t, "", Interface(test))
+	assert.Equal(t, "", Interface(nil))
 
-	// TODO handle slice properly if needed
 	assert.Equal(t, "[1e+08]", Interface([]float64{100000000}))
+	assert.Equal(t, "[]", Interface([]float64(nil)))
 }
