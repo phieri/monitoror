@@ -40,7 +40,7 @@ func (pu *pingdomUsecase) Check(params *pingdomModels.CheckParams) (tile *models
 	return
 }
 
-func (pu *pingdomUsecase) CheckGenerator(params interface{}) ([]uiConfigModels.GeneratedTile, error) {
+func (pu *pingdomUsecase) CheckGenerator(params any) ([]uiConfigModels.GeneratedTile, error) {
 	panic("unimplemented")
 }
 
@@ -54,7 +54,7 @@ func (pu *pingdomUsecase) TransactionCheck(params *pingdomModels.TransactionChec
 	return
 }
 
-func (pu *pingdomUsecase) TransactionCheckGenerator(params interface{}) ([]uiConfigModels.GeneratedTile, error) {
+func (pu *pingdomUsecase) TransactionCheckGenerator(params any) ([]uiConfigModels.GeneratedTile, error) {
 	panic("unimplemented")
 }
 

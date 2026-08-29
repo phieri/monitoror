@@ -67,7 +67,7 @@ func (cu *configUsecase) hydrateTile(configBag *models.ConfigBag, tile *models.T
 	for key, value := range tile.Params {
 		// Array of value
 		if reflect.TypeOf(value).Kind() == reflect.Slice {
-			for _, v := range value.([]interface{}) {
+			for _, v := range value.([]any) {
 				urlParams.Add(key, humanize.Interface(v))
 			}
 		} else {
@@ -92,7 +92,7 @@ func (cu *configUsecase) hydrateGeneratorTile(configBag *models.ConfigBag, tile 
 	rType := reflect.TypeOf(generatorVariantMetadata.GeneratorParamsValidator)
 	rInstance := reflect.New(rType.Elem()).Interface()
 
-	// Marshal / Unmarshal the map[string]interface{} struct in new instance of Validator
+	// Marshal / Unmarshal the map[string]any struct in new instance of Validator
 	bParams, _ := json.Marshal(tile.Params)
 	_ = json.Unmarshal(bParams, &rInstance)
 
@@ -130,13 +130,13 @@ func (cu *configUsecase) hydrateGeneratorTile(configBag *models.ConfigBag, tile 
 		newTile := models.TileConfig{
 			Type:          generatorMetadata.GeneratedTileType,
 			Label:         result.Label,
-			Params:        make(map[string]interface{}),
+			Params:        make(map[string]any),
 			ConfigVariant: tile.ConfigVariant,
 			ColumnSpan:    tile.ColumnSpan,
 			RowSpan:       tile.RowSpan,
 		}
 
-		// Transform Tile params struct in map[string]interface{}
+		// Transform Tile params struct in map[string]any
 		bParams, _ = json.Marshal(result.Params)
 		_ = json.Unmarshal(bParams, &newTile.Params)
 

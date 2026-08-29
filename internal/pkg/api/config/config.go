@@ -14,7 +14,7 @@ func init() {
 	removeNull = regexp.MustCompile(`\"[^"]+\"\s*:\s*null,?`)
 }
 
-func Keys(m interface{}) string {
+func Keys(m any) string {
 	keys := reflect.ValueOf(m).MapKeys()
 	strKeys := make([]string, len(keys))
 
@@ -25,7 +25,7 @@ func Keys(m interface{}) string {
 	return strings.Join(strKeys, ", ")
 }
 
-func Stringify(v interface{}) string {
+func Stringify(v any) string {
 	bytes, _ := json.Marshal(v)
 	s := string(bytes)
 	s = removeNull.ReplaceAllString(s, ``)

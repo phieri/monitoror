@@ -59,7 +59,7 @@ func init() {
 	httpRegex = regexp.MustCompile(HTTPRegex)
 }
 
-func Struct(s interface{}) []pkgValidator.Error {
+func Struct(s any) []pkgValidator.Error {
 	var errors []pkgValidator.Error
 
 	if err := validate.Struct(s); err != nil {

@@ -13,11 +13,11 @@ import (
 )
 
 // LoadConfig load config wrapper for monitorable
-func LoadConfig(conf interface{}, defaultConf interface{}) {
+func LoadConfig(conf any, defaultConf any) {
 	pkgConfig.LoadConfigWithVariant(fmt.Sprintf("%s_%s", coreConfig.EnvPrefix, coreConfig.MonitorablePrefix), coreModels.DefaultVariantName, conf, defaultConf)
 }
 
-func ValidateConfig(conf interface{}, variantName coreModels.VariantName) []error {
+func ValidateConfig(conf any, variantName coreModels.VariantName) []error {
 	var result []error
 
 	if errors := validate.Struct(conf); len(errors) > 0 {
@@ -34,7 +34,7 @@ func ValidateConfig(conf interface{}, variantName coreModels.VariantName) []erro
 
 // buildMonitorableEnvKey rebuild Env variable from config variable
 // a little dirty, but I don't know how to do better
-func buildMonitorableEnvKey(conf interface{}, variantName models.VariantName, variableName string) string {
+func buildMonitorableEnvKey(conf any, variantName models.VariantName, variableName string) string {
 	// Verify Params
 	if reflect.ValueOf(conf).Kind() != reflect.Ptr {
 		panic(fmt.Sprintf("wrong GetConfigVariableEnv parameters: conf need to be a pointer of struct not a %s", reflect.ValueOf(conf).Kind()))
@@ -52,7 +52,7 @@ func buildMonitorableEnvKey(conf interface{}, variantName models.VariantName, va
 }
 
 // GetVariantsNames extract variants from monitorable config
-func GetVariantsNames(conf interface{}) []models.VariantName {
+func GetVariantsNames(conf any) []models.VariantName {
 	// Verify Params
 	if reflect.ValueOf(conf).Kind() != reflect.Map {
 		panic(fmt.Sprintf("wrong GetVariantsNames parameters: conf need to be a map[coreModels.VariantName] not a %s", reflect.ValueOf(conf).Kind()))

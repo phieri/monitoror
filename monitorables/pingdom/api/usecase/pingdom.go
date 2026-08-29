@@ -103,12 +103,12 @@ func (pu *pingdomUsecase) check(transaction bool, checkID int) (*coreModels.Tile
 	return tile, nil
 }
 
-func (pu *pingdomUsecase) CheckGenerator(params interface{}) ([]uiConfigModels.GeneratedTile, error) {
+func (pu *pingdomUsecase) CheckGenerator(params any) ([]uiConfigModels.GeneratedTile, error) {
 	cParams := params.(*models.CheckGeneratorParams)
 	return pu.checkGenerator(false, cParams.Tags, cParams.SortBy)
 }
 
-func (pu *pingdomUsecase) TransactionCheckGenerator(params interface{}) ([]uiConfigModels.GeneratedTile, error) {
+func (pu *pingdomUsecase) TransactionCheckGenerator(params any) ([]uiConfigModels.GeneratedTile, error) {
 	cParams := params.(*models.TransactionCheckGeneratorParams)
 	return pu.checkGenerator(true, cParams.Tags, cParams.SortBy)
 }
@@ -134,7 +134,7 @@ func (pu *pingdomUsecase) checkGenerator(transaction bool, tags, sortBy string) 
 		}
 
 		// Build results
-		var p interface{}
+		var p any
 		if transaction {
 			p = models.TransactionCheckParams{
 				ID: pointer.ToInt(check.ID),

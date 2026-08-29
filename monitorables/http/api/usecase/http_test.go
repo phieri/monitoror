@@ -234,7 +234,7 @@ func TestHTTPUsecase_LookupKey_Json(t *testing.T) {
 	httpFormatted := &models.HTTPFormattedParams{}
 	httpFormatted.Key = `bloc1."bloc.2".[0].value`
 
-	var data interface{}
+	var data any
 	err := json.Unmarshal([]byte(input), &data)
 	if assert.NoError(t, err) {
 		found, value := lookupKey(httpFormatted, data)
@@ -255,7 +255,7 @@ bloc1:
 	httpYaml := &models.HTTPFormattedParams{}
 	httpYaml.Key = `bloc1."bloc.2".[0].value`
 
-	var data interface{}
+	var data any
 	err := yaml.Unmarshal([]byte(input), &data)
 	if assert.NoError(t, err) {
 		found, value := lookupKey(httpYaml, data)
@@ -276,7 +276,7 @@ bloc1:
 	httpYaml := &models.HTTPFormattedParams{}
 	httpYaml.Key = `bloc1."bloc.2".[0].value2`
 
-	var data interface{}
+	var data any
 	err := yaml.Unmarshal([]byte(input), &data)
 	if assert.NoError(t, err) {
 		found, _ := lookupKey(httpYaml, data)

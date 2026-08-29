@@ -15,11 +15,11 @@ type IssuesService struct {
 
 // ListIssues provides a mock function with given fields: opt, options
 func (_m *IssuesService) ListIssues(opt *gitlab.ListIssuesOptions, options ...gitlab.RequestOptionFunc) ([]*gitlab.Issue, *gitlab.Response, error) {
-	_va := make([]interface{}, len(options))
+	_va := make([]any, len(options))
 	for _i := range options {
 		_va[_i] = options[_i]
 	}
-	var _ca []interface{}
+	var _ca []any
 	_ca = append(_ca, opt)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
@@ -60,12 +60,12 @@ func (_m *IssuesService) ListIssues(opt *gitlab.ListIssuesOptions, options ...gi
 }
 
 // ListProjectIssues provides a mock function with given fields: pid, opt, options
-func (_m *IssuesService) ListProjectIssues(pid interface{}, opt *gitlab.ListProjectIssuesOptions, options ...gitlab.RequestOptionFunc) ([]*gitlab.Issue, *gitlab.Response, error) {
-	_va := make([]interface{}, len(options))
+func (_m *IssuesService) ListProjectIssues(pid any, opt *gitlab.ListProjectIssuesOptions, options ...gitlab.RequestOptionFunc) ([]*gitlab.Issue, *gitlab.Response, error) {
+	_va := make([]any, len(options))
 	for _i := range options {
 		_va[_i] = options[_i]
 	}
-	var _ca []interface{}
+	var _ca []any
 	_ca = append(_ca, pid, opt)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
@@ -77,10 +77,10 @@ func (_m *IssuesService) ListProjectIssues(pid interface{}, opt *gitlab.ListProj
 	var r0 []*gitlab.Issue
 	var r1 *gitlab.Response
 	var r2 error
-	if rf, ok := ret.Get(0).(func(interface{}, *gitlab.ListProjectIssuesOptions, ...gitlab.RequestOptionFunc) ([]*gitlab.Issue, *gitlab.Response, error)); ok {
+	if rf, ok := ret.Get(0).(func(any, *gitlab.ListProjectIssuesOptions, ...gitlab.RequestOptionFunc) ([]*gitlab.Issue, *gitlab.Response, error)); ok {
 		return rf(pid, opt, options...)
 	}
-	if rf, ok := ret.Get(0).(func(interface{}, *gitlab.ListProjectIssuesOptions, ...gitlab.RequestOptionFunc) []*gitlab.Issue); ok {
+	if rf, ok := ret.Get(0).(func(any, *gitlab.ListProjectIssuesOptions, ...gitlab.RequestOptionFunc) []*gitlab.Issue); ok {
 		r0 = rf(pid, opt, options...)
 	} else {
 		if ret.Get(0) != nil {
@@ -88,7 +88,7 @@ func (_m *IssuesService) ListProjectIssues(pid interface{}, opt *gitlab.ListProj
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(interface{}, *gitlab.ListProjectIssuesOptions, ...gitlab.RequestOptionFunc) *gitlab.Response); ok {
+	if rf, ok := ret.Get(1).(func(any, *gitlab.ListProjectIssuesOptions, ...gitlab.RequestOptionFunc) *gitlab.Response); ok {
 		r1 = rf(pid, opt, options...)
 	} else {
 		if ret.Get(1) != nil {
@@ -96,7 +96,7 @@ func (_m *IssuesService) ListProjectIssues(pid interface{}, opt *gitlab.ListProj
 		}
 	}
 
-	if rf, ok := ret.Get(2).(func(interface{}, *gitlab.ListProjectIssuesOptions, ...gitlab.RequestOptionFunc) error); ok {
+	if rf, ok := ret.Get(2).(func(any, *gitlab.ListProjectIssuesOptions, ...gitlab.RequestOptionFunc) error); ok {
 		r2 = rf(pid, opt, options...)
 	} else {
 		r2 = ret.Error(2)

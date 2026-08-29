@@ -367,7 +367,7 @@ func TestUsecase_VerifyTile_WithGenerator(t *testing.T) {
 
 	tile, conf := initConfig(t, rawConfig)
 	params := &jenkinsModels.BuildParams{Job: "test"}
-	mockBuilder := func(_ interface{}) ([]models.GeneratedTile, error) {
+	mockBuilder := func(_ any) ([]models.GeneratedTile, error) {
 		return []models.GeneratedTile{{Params: params}}, nil
 	}
 
@@ -420,7 +420,7 @@ func TestUsecase_VerifyTile_WithGenerator_WithWrongVariant(t *testing.T) {
 
 	tile, conf := initConfig(t, rawConfig)
 	params := &jenkinsModels.BuildParams{Job: "test"}
-	mockBuilder := func(_ interface{}) ([]models.GeneratedTile, error) {
+	mockBuilder := func(_ any) ([]models.GeneratedTile, error) {
 		return []models.GeneratedTile{{Params: params}}, nil
 	}
 

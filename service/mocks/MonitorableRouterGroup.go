@@ -16,11 +16,11 @@ type MonitorableRouterGroup struct {
 
 // GET provides a mock function with given fields: path, handlerFunc, _a2
 func (_m *MonitorableRouterGroup) GET(path string, handlerFunc echo.HandlerFunc, _a2 ...options.RouterOption) *echo.Route {
-	_va := make([]interface{}, len(_a2))
+	_va := make([]any, len(_a2))
 	for _i := range _a2 {
 		_va[_i] = _a2[_i]
 	}
-	var _ca []interface{}
+	var _ca []any
 	_ca = append(_ca, path, handlerFunc)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)

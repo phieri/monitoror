@@ -50,7 +50,7 @@ func (h *ConfigDelivery) GetConfig(c echo.Context) error {
 }
 
 // JSONMarshal same as JSON.Marshall but with SetEscapeHTML(false)
-func JSONMarshal(t interface{}) ([]byte, error) {
+func JSONMarshal(t any) ([]byte, error) {
 	buffer := &bytes.Buffer{}
 	encoder := json.NewEncoder(buffer)
 	encoder.SetEscapeHTML(false)

@@ -150,13 +150,13 @@ func Duration(value, def time.Duration) time.Duration {
 }
 
 // Struct if value == struct zero value, return def otherwise return value
-func Struct(value, def interface{}) interface{} {
+func Struct(value, def any) any {
 	if isZero(value) {
 		return def
 	}
 	return value
 }
 
-func isZero(x interface{}) bool {
+func isZero(x any) bool {
 	return reflect.DeepEqual(x, reflect.Zero(reflect.TypeOf(x)).Interface())
 }

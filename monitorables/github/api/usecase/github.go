@@ -132,7 +132,7 @@ func (gu *githubUsecase) PullRequest(params *models.PullRequestParams) (*coreMod
 	return tile, nil
 }
 
-func (gu *githubUsecase) PullRequestsGenerator(params interface{}) ([]uiConfigModels.GeneratedTile, error) {
+func (gu *githubUsecase) PullRequestsGenerator(params any) ([]uiConfigModels.GeneratedTile, error) {
 	prParams := params.(*models.PullRequestGeneratorParams)
 
 	pullRequests, err := gu.repository.GetPullRequests(prParams.Owner, prParams.Repository)

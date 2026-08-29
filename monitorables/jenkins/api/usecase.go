@@ -15,6 +15,6 @@ const (
 type (
 	Usecase interface {
 		Build(params *models.BuildParams) (*coreModels.Tile, error)
-		BuildGenerator(params interface{}) ([]uiConfigModels.GeneratedTile, error)
+		BuildGenerator(params any) ([]uiConfigModels.GeneratedTile, error)
 	}
 )

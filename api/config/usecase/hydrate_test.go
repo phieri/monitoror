@@ -85,7 +85,7 @@ func TestUsecase_Hydrate_WithGenerator(t *testing.T) {
 }
 `
 	params := &jenkinsModels.BuildParams{Job: "test"}
-	mockBuilder := func(_ interface{}) ([]models.GeneratedTile, error) {
+	mockBuilder := func(_ any) ([]models.GeneratedTile, error) {
 		return []models.GeneratedTile{{Params: params}}, nil
 	}
 
@@ -131,7 +131,7 @@ func TestUsecase_Hydrate_WithGeneratorEmpty(t *testing.T) {
   ]
 }
 `
-	mockBuilder := func(_ interface{}) ([]models.GeneratedTile, error) { return []models.GeneratedTile{}, nil }
+	mockBuilder := func(_ any) ([]models.GeneratedTile, error) { return []models.GeneratedTile{}, nil }
 
 	usecase := initConfigUsecase(nil)
 	usecase.registry.RegisterGenerator(jenkinsApi.JenkinsBuildTileType, versions.MinimalVersion, []coreModels.VariantName{coreModels.DefaultVariantName}).
@@ -163,10 +163,10 @@ func TestUsecase_Hydrate_WithGenerator_WithError(t *testing.T) {
 }
 `
 	params := &jenkinsModels.BuildParams{Job: "test"}
-	mockBuilder := func(_ interface{}) ([]models.GeneratedTile, error) {
+	mockBuilder := func(_ any) ([]models.GeneratedTile, error) {
 		return []models.GeneratedTile{{Params: params}}, nil
 	}
-	mockBuilder2 := func(_ interface{}) ([]models.GeneratedTile, error) { return nil, errors.New("unable to find job") }
+	mockBuilder2 := func(_ any) ([]models.GeneratedTile, error) { return nil, errors.New("unable to find job") }
 
 	usecase := initConfigUsecase(nil)
 	tileGeneratorEnabler := usecase.registry.RegisterGenerator(jenkinsApi.JenkinsBuildTileType, versions.MinimalVersion, []coreModels.VariantName{coreModels.DefaultVariantName, "variant1"})
@@ -199,10 +199,10 @@ func TestUsecase_Hydrate_WithGenerator_WithTimeoutError(t *testing.T) {
 }
 `
 	params := &jenkinsModels.BuildParams{Job: "test"}
-	mockBuilder := func(_ interface{}) ([]models.GeneratedTile, error) {
+	mockBuilder := func(_ any) ([]models.GeneratedTile, error) {
 		return []models.GeneratedTile{{Params: params}}, nil
 	}
-	mockBuilder2 := func(_ interface{}) ([]models.GeneratedTile, error) { return nil, context.DeadlineExceeded }
+	mockBuilder2 := func(_ any) ([]models.GeneratedTile, error) { return nil, context.DeadlineExceeded }
 
 	usecase := initConfigUsecase(nil)
 	tileGeneratorEnabler := usecase.registry.RegisterGenerator(jenkinsApi.JenkinsBuildTileType, versions.MinimalVersion, []coreModels.VariantName{coreModels.DefaultVariantName, "variant1"})
@@ -233,7 +233,7 @@ func TestUsecase_Hydrate_WithGenerator_WithTimeoutCache(t *testing.T) {
 	cacheKey := fmt.Sprintf("%s:%s_%s_%s", TileGeneratorStoreKeyPrefix, "GENERATE:JENKINS-BUILD", "default", `{"job":"test"}`)
 	_ = usecase.generatorTileStore.Add(cacheKey, cachedResult, 0)
 
-	mockBuilder := func(_ interface{}) ([]models.GeneratedTile, error) { return nil, context.DeadlineExceeded }
+	mockBuilder := func(_ any) ([]models.GeneratedTile, error) { return nil, context.DeadlineExceeded }
 	usecase.registry.RegisterGenerator(jenkinsApi.JenkinsBuildTileType, versions.MinimalVersion, []coreModels.VariantName{coreModels.DefaultVariantName}).
 		Enable(coreModels.DefaultVariantName, &jenkinsModels.BuildGeneratorParams{}, mockBuilder)
 
@@ -256,7 +256,7 @@ func TestUsecase_Hydrate_TwoGenerators(t *testing.T) {
   ]
 }
 `
-	mockBuilder := func(_ interface{}) ([]models.GeneratedTile, error) {
+	mockBuilder := func(_ any) ([]models.GeneratedTile, error) {
 		return []models.GeneratedTile{
 			{Params: &jenkinsModels.BuildParams{Job: "test1"}},
 			{Params: &jenkinsModels.BuildParams{Job: "test2"}},

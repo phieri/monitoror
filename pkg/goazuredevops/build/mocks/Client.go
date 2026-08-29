@@ -932,23 +932,23 @@ func (_m *Client) GetBuildOptionDefinitions(_a0 context.Context, _a1 build.GetBu
 }
 
 // GetBuildProperties provides a mock function with given fields: _a0, _a1
-func (_m *Client) GetBuildProperties(_a0 context.Context, _a1 build.GetBuildPropertiesArgs) (interface{}, error) {
+func (_m *Client) GetBuildProperties(_a0 context.Context, _a1 build.GetBuildPropertiesArgs) (any, error) {
 	ret := _m.Called(_a0, _a1)
 
 	if len(ret) == 0 {
 		panic("no return value specified for GetBuildProperties")
 	}
 
-	var r0 interface{}
+	var r0 any
 	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, build.GetBuildPropertiesArgs) (interface{}, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, build.GetBuildPropertiesArgs) (any, error)); ok {
 		return rf(_a0, _a1)
 	}
-	if rf, ok := ret.Get(0).(func(context.Context, build.GetBuildPropertiesArgs) interface{}); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, build.GetBuildPropertiesArgs) any); ok {
 		r0 = rf(_a0, _a1)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(interface{})
+			r0 = ret.Get(0).(any)
 		}
 	}
 
@@ -1292,23 +1292,23 @@ func (_m *Client) GetDefinitionMetrics(_a0 context.Context, _a1 build.GetDefinit
 }
 
 // GetDefinitionProperties provides a mock function with given fields: _a0, _a1
-func (_m *Client) GetDefinitionProperties(_a0 context.Context, _a1 build.GetDefinitionPropertiesArgs) (interface{}, error) {
+func (_m *Client) GetDefinitionProperties(_a0 context.Context, _a1 build.GetDefinitionPropertiesArgs) (any, error) {
 	ret := _m.Called(_a0, _a1)
 
 	if len(ret) == 0 {
 		panic("no return value specified for GetDefinitionProperties")
 	}
 
-	var r0 interface{}
+	var r0 any
 	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, build.GetDefinitionPropertiesArgs) (interface{}, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, build.GetDefinitionPropertiesArgs) (any, error)); ok {
 		return rf(_a0, _a1)
 	}
-	if rf, ok := ret.Get(0).(func(context.Context, build.GetDefinitionPropertiesArgs) interface{}); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, build.GetDefinitionPropertiesArgs) any); ok {
 		r0 = rf(_a0, _a1)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(interface{})
+			r0 = ret.Get(0).(any)
 		}
 	}
 
@@ -2120,23 +2120,23 @@ func (_m *Client) UpdateBuild(_a0 context.Context, _a1 build.UpdateBuildArgs) (*
 }
 
 // UpdateBuildProperties provides a mock function with given fields: _a0, _a1
-func (_m *Client) UpdateBuildProperties(_a0 context.Context, _a1 build.UpdateBuildPropertiesArgs) (interface{}, error) {
+func (_m *Client) UpdateBuildProperties(_a0 context.Context, _a1 build.UpdateBuildPropertiesArgs) (any, error) {
 	ret := _m.Called(_a0, _a1)
 
 	if len(ret) == 0 {
 		panic("no return value specified for UpdateBuildProperties")
 	}
 
-	var r0 interface{}
+	var r0 any
 	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, build.UpdateBuildPropertiesArgs) (interface{}, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, build.UpdateBuildPropertiesArgs) (any, error)); ok {
 		return rf(_a0, _a1)
 	}
-	if rf, ok := ret.Get(0).(func(context.Context, build.UpdateBuildPropertiesArgs) interface{}); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, build.UpdateBuildPropertiesArgs) any); ok {
 		r0 = rf(_a0, _a1)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(interface{})
+			r0 = ret.Get(0).(any)
 		}
 	}
 
@@ -2240,23 +2240,23 @@ func (_m *Client) UpdateDefinition(_a0 context.Context, _a1 build.UpdateDefiniti
 }
 
 // UpdateDefinitionProperties provides a mock function with given fields: _a0, _a1
-func (_m *Client) UpdateDefinitionProperties(_a0 context.Context, _a1 build.UpdateDefinitionPropertiesArgs) (interface{}, error) {
+func (_m *Client) UpdateDefinitionProperties(_a0 context.Context, _a1 build.UpdateDefinitionPropertiesArgs) (any, error) {
 	ret := _m.Called(_a0, _a1)
 
 	if len(ret) == 0 {
 		panic("no return value specified for UpdateDefinitionProperties")
 	}
 
-	var r0 interface{}
+	var r0 any
 	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, build.UpdateDefinitionPropertiesArgs) (interface{}, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, build.UpdateDefinitionPropertiesArgs) (any, error)); ok {
 		return rf(_a0, _a1)
 	}
-	if rf, ok := ret.Get(0).(func(context.Context, build.UpdateDefinitionPropertiesArgs) interface{}); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, build.UpdateDefinitionPropertiesArgs) any); ok {
 		r0 = rf(_a0, _a1)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(interface{})
+			r0 = ret.Get(0).(any)
 		}
 	}
 

@@ -14,12 +14,12 @@ type PipelinesService struct {
 }
 
 // GetPipeline provides a mock function with given fields: pid, pipeline, options
-func (_m *PipelinesService) GetPipeline(pid interface{}, pipeline int, options ...gitlab.RequestOptionFunc) (*gitlab.Pipeline, *gitlab.Response, error) {
-	_va := make([]interface{}, len(options))
+func (_m *PipelinesService) GetPipeline(pid any, pipeline int, options ...gitlab.RequestOptionFunc) (*gitlab.Pipeline, *gitlab.Response, error) {
+	_va := make([]any, len(options))
 	for _i := range options {
 		_va[_i] = options[_i]
 	}
-	var _ca []interface{}
+	var _ca []any
 	_ca = append(_ca, pid, pipeline)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
@@ -31,10 +31,10 @@ func (_m *PipelinesService) GetPipeline(pid interface{}, pipeline int, options .
 	var r0 *gitlab.Pipeline
 	var r1 *gitlab.Response
 	var r2 error
-	if rf, ok := ret.Get(0).(func(interface{}, int, ...gitlab.RequestOptionFunc) (*gitlab.Pipeline, *gitlab.Response, error)); ok {
+	if rf, ok := ret.Get(0).(func(any, int, ...gitlab.RequestOptionFunc) (*gitlab.Pipeline, *gitlab.Response, error)); ok {
 		return rf(pid, pipeline, options...)
 	}
-	if rf, ok := ret.Get(0).(func(interface{}, int, ...gitlab.RequestOptionFunc) *gitlab.Pipeline); ok {
+	if rf, ok := ret.Get(0).(func(any, int, ...gitlab.RequestOptionFunc) *gitlab.Pipeline); ok {
 		r0 = rf(pid, pipeline, options...)
 	} else {
 		if ret.Get(0) != nil {
@@ -42,7 +42,7 @@ func (_m *PipelinesService) GetPipeline(pid interface{}, pipeline int, options .
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(interface{}, int, ...gitlab.RequestOptionFunc) *gitlab.Response); ok {
+	if rf, ok := ret.Get(1).(func(any, int, ...gitlab.RequestOptionFunc) *gitlab.Response); ok {
 		r1 = rf(pid, pipeline, options...)
 	} else {
 		if ret.Get(1) != nil {
@@ -50,7 +50,7 @@ func (_m *PipelinesService) GetPipeline(pid interface{}, pipeline int, options .
 		}
 	}
 
-	if rf, ok := ret.Get(2).(func(interface{}, int, ...gitlab.RequestOptionFunc) error); ok {
+	if rf, ok := ret.Get(2).(func(any, int, ...gitlab.RequestOptionFunc) error); ok {
 		r2 = rf(pid, pipeline, options...)
 	} else {
 		r2 = ret.Error(2)
@@ -60,12 +60,12 @@ func (_m *PipelinesService) GetPipeline(pid interface{}, pipeline int, options .
 }
 
 // ListProjectPipelines provides a mock function with given fields: pid, opt, options
-func (_m *PipelinesService) ListProjectPipelines(pid interface{}, opt *gitlab.ListProjectPipelinesOptions, options ...gitlab.RequestOptionFunc) ([]*gitlab.PipelineInfo, *gitlab.Response, error) {
-	_va := make([]interface{}, len(options))
+func (_m *PipelinesService) ListProjectPipelines(pid any, opt *gitlab.ListProjectPipelinesOptions, options ...gitlab.RequestOptionFunc) ([]*gitlab.PipelineInfo, *gitlab.Response, error) {
+	_va := make([]any, len(options))
 	for _i := range options {
 		_va[_i] = options[_i]
 	}
-	var _ca []interface{}
+	var _ca []any
 	_ca = append(_ca, pid, opt)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
@@ -77,10 +77,10 @@ func (_m *PipelinesService) ListProjectPipelines(pid interface{}, opt *gitlab.Li
 	var r0 []*gitlab.PipelineInfo
 	var r1 *gitlab.Response
 	var r2 error
-	if rf, ok := ret.Get(0).(func(interface{}, *gitlab.ListProjectPipelinesOptions, ...gitlab.RequestOptionFunc) ([]*gitlab.PipelineInfo, *gitlab.Response, error)); ok {
+	if rf, ok := ret.Get(0).(func(any, *gitlab.ListProjectPipelinesOptions, ...gitlab.RequestOptionFunc) ([]*gitlab.PipelineInfo, *gitlab.Response, error)); ok {
 		return rf(pid, opt, options...)
 	}
-	if rf, ok := ret.Get(0).(func(interface{}, *gitlab.ListProjectPipelinesOptions, ...gitlab.RequestOptionFunc) []*gitlab.PipelineInfo); ok {
+	if rf, ok := ret.Get(0).(func(any, *gitlab.ListProjectPipelinesOptions, ...gitlab.RequestOptionFunc) []*gitlab.PipelineInfo); ok {
 		r0 = rf(pid, opt, options...)
 	} else {
 		if ret.Get(0) != nil {
@@ -88,7 +88,7 @@ func (_m *PipelinesService) ListProjectPipelines(pid interface{}, opt *gitlab.Li
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(interface{}, *gitlab.ListProjectPipelinesOptions, ...gitlab.RequestOptionFunc) *gitlab.Response); ok {
+	if rf, ok := ret.Get(1).(func(any, *gitlab.ListProjectPipelinesOptions, ...gitlab.RequestOptionFunc) *gitlab.Response); ok {
 		r1 = rf(pid, opt, options...)
 	} else {
 		if ret.Get(1) != nil {
@@ -96,7 +96,7 @@ func (_m *PipelinesService) ListProjectPipelines(pid interface{}, opt *gitlab.Li
 		}
 	}
 
-	if rf, ok := ret.Get(2).(func(interface{}, *gitlab.ListProjectPipelinesOptions, ...gitlab.RequestOptionFunc) error); ok {
+	if rf, ok := ret.Get(2).(func(any, *gitlab.ListProjectPipelinesOptions, ...gitlab.RequestOptionFunc) error); ok {
 		r2 = rf(pid, opt, options...)
 	} else {
 		r2 = ret.Error(2)

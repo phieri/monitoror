@@ -15,6 +15,6 @@ const (
 type (
 	Usecase interface {
 		Check(params *models.CheckParams) (*coreModels.Tile, error)
-		CheckGenerator(params interface{}) ([]uiConfigModels.GeneratedTile, error)
+		CheckGenerator(params any) ([]uiConfigModels.GeneratedTile, error)
 	}
 )

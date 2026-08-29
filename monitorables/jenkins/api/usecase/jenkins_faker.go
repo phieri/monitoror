@@ -100,7 +100,7 @@ func (ju *jenkinsUsecase) Build(params *jenkinsModels.BuildParams) (tile *models
 	return
 }
 
-func (tu *jenkinsUsecase) BuildGenerator(params interface{}) ([]uiConfigModels.GeneratedTile, error) {
+func (tu *jenkinsUsecase) BuildGenerator(params any) ([]uiConfigModels.GeneratedTile, error) {
 	panic("unimplemented")
 }
 

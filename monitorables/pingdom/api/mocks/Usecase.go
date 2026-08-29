@@ -47,7 +47,7 @@ func (_m *Usecase) Check(params *models.CheckParams) (*monitorormodels.Tile, err
 }
 
 // CheckGenerator provides a mock function with given fields: params
-func (_m *Usecase) CheckGenerator(params interface{}) ([]configmodels.GeneratedTile, error) {
+func (_m *Usecase) CheckGenerator(params any) ([]configmodels.GeneratedTile, error) {
 	ret := _m.Called(params)
 
 	if len(ret) == 0 {
@@ -56,10 +56,10 @@ func (_m *Usecase) CheckGenerator(params interface{}) ([]configmodels.GeneratedT
 
 	var r0 []configmodels.GeneratedTile
 	var r1 error
-	if rf, ok := ret.Get(0).(func(interface{}) ([]configmodels.GeneratedTile, error)); ok {
+	if rf, ok := ret.Get(0).(func(any) ([]configmodels.GeneratedTile, error)); ok {
 		return rf(params)
 	}
-	if rf, ok := ret.Get(0).(func(interface{}) []configmodels.GeneratedTile); ok {
+	if rf, ok := ret.Get(0).(func(any) []configmodels.GeneratedTile); ok {
 		r0 = rf(params)
 	} else {
 		if ret.Get(0) != nil {
@@ -67,7 +67,7 @@ func (_m *Usecase) CheckGenerator(params interface{}) ([]configmodels.GeneratedT
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(interface{}) error); ok {
+	if rf, ok := ret.Get(1).(func(any) error); ok {
 		r1 = rf(params)
 	} else {
 		r1 = ret.Error(1)
@@ -107,7 +107,7 @@ func (_m *Usecase) TransactionCheck(params *models.TransactionCheckParams) (*mon
 }
 
 // TransactionCheckGenerator provides a mock function with given fields: params
-func (_m *Usecase) TransactionCheckGenerator(params interface{}) ([]configmodels.GeneratedTile, error) {
+func (_m *Usecase) TransactionCheckGenerator(params any) ([]configmodels.GeneratedTile, error) {
 	ret := _m.Called(params)
 
 	if len(ret) == 0 {
@@ -116,10 +116,10 @@ func (_m *Usecase) TransactionCheckGenerator(params interface{}) ([]configmodels
 
 	var r0 []configmodels.GeneratedTile
 	var r1 error
-	if rf, ok := ret.Get(0).(func(interface{}) ([]configmodels.GeneratedTile, error)); ok {
+	if rf, ok := ret.Get(0).(func(any) ([]configmodels.GeneratedTile, error)); ok {
 		return rf(params)
 	}
-	if rf, ok := ret.Get(0).(func(interface{}) []configmodels.GeneratedTile); ok {
+	if rf, ok := ret.Get(0).(func(any) []configmodels.GeneratedTile); ok {
 		r0 = rf(params)
 	} else {
 		if ret.Get(0) != nil {
@@ -127,7 +127,7 @@ func (_m *Usecase) TransactionCheckGenerator(params interface{}) ([]configmodels
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(interface{}) error); ok {
+	if rf, ok := ret.Get(1).(func(any) error); ok {
 		r1 = rf(params)
 	} else {
 		r1 = ret.Error(1)

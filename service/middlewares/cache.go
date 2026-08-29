@@ -80,11 +80,11 @@ func (cm *CacheMiddleware) DownstreamStoreMiddleware() echo.MiddlewareFunc {
 // ==============================================================================
 // ResponsesStore methods (implementation of cache.Store)
 // ==============================================================================
-func (c *upstreamStore) Get(key string, value interface{}) error {
+func (c *upstreamStore) Get(key string, value any) error {
 	return c.store.Get(models.UpstreamStoreKeyPrefix+key[1:], value)
 }
 
-func (c *upstreamStore) Set(key string, val interface{}, expires time.Duration) (err error) {
+func (c *upstreamStore) Set(key string, val any, expires time.Duration) (err error) {
 	err = c.store.Set(models.UpstreamStoreKeyPrefix+key[1:], val, expires)
 
 	// Don't add response in downstream cache when she come from timeout recover to avoid infinite loop
@@ -95,11 +95,11 @@ func (c *upstreamStore) Set(key string, val interface{}, expires time.Duration) 
 	return
 }
 
-func (c *upstreamStore) Add(key string, value interface{}, expires time.Duration) error {
+func (c *upstreamStore) Add(key string, value any, expires time.Duration) error {
 	panic("unimplemented")
 }
 
-func (c *upstreamStore) Replace(key string, value interface{}, expires time.Duration) error {
+func (c *upstreamStore) Replace(key string, value any, expires time.Duration) error {
 	panic("unimplemented")
 }
 

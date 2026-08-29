@@ -12,7 +12,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-func LoadConfigWithVariant(envPrefix string, defaultVariantName models.VariantName, conf interface{}, defaultConf interface{}) {
+func LoadConfigWithVariant(envPrefix string, defaultVariantName models.VariantName, conf any, defaultConf any) {
 	// Verify Params
 	if reflect.ValueOf(conf).Kind() != reflect.Ptr {
 		panic(fmt.Sprintf("wrong LoadConfigWithVariant parameters: conf need to be a pointer of map[string]struct not a %s", reflect.ValueOf(conf).Kind()))

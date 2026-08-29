@@ -14,11 +14,11 @@ type PingdomCheckAPI struct {
 
 // List provides a mock function with given fields: params
 func (_m *PingdomCheckAPI) List(params ...map[string]string) ([]pingdom.CheckResponse, error) {
-	_va := make([]interface{}, len(params))
+	_va := make([]any, len(params))
 	for _i := range params {
 		_va[_i] = params[_i]
 	}
-	var _ca []interface{}
+	var _ca []any
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 

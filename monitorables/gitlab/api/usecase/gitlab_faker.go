@@ -142,7 +142,7 @@ func (gu *gitlabUsecase) MergeRequest(params *models.MergeRequestParams) (tile *
 	return tile, nil
 }
 
-func (gu *gitlabUsecase) MergeRequestsGenerator(params interface{}) ([]uiConfigModels.GeneratedTile, error) {
+func (gu *gitlabUsecase) MergeRequestsGenerator(params any) ([]uiConfigModels.GeneratedTile, error) {
 	panic("unimplemented")
 }
 

@@ -169,7 +169,7 @@ func (gu *githubUsecase) PullRequest(params *models.PullRequestParams) (tile *co
 	return tile, nil
 }
 
-func (gu *githubUsecase) PullRequestsGenerator(params interface{}) ([]uiConfigModels.GeneratedTile, error) {
+func (gu *githubUsecase) PullRequestsGenerator(params any) ([]uiConfigModels.GeneratedTile, error) {
 	panic("unimplemented")
 }
 

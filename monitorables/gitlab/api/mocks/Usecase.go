@@ -77,7 +77,7 @@ func (_m *Usecase) MergeRequest(params *models.MergeRequestParams) (*monitorormo
 }
 
 // MergeRequestsGenerator provides a mock function with given fields: params
-func (_m *Usecase) MergeRequestsGenerator(params interface{}) ([]configmodels.GeneratedTile, error) {
+func (_m *Usecase) MergeRequestsGenerator(params any) ([]configmodels.GeneratedTile, error) {
 	ret := _m.Called(params)
 
 	if len(ret) == 0 {
@@ -86,10 +86,10 @@ func (_m *Usecase) MergeRequestsGenerator(params interface{}) ([]configmodels.Ge
 
 	var r0 []configmodels.GeneratedTile
 	var r1 error
-	if rf, ok := ret.Get(0).(func(interface{}) ([]configmodels.GeneratedTile, error)); ok {
+	if rf, ok := ret.Get(0).(func(any) ([]configmodels.GeneratedTile, error)); ok {
 		return rf(params)
 	}
-	if rf, ok := ret.Get(0).(func(interface{}) []configmodels.GeneratedTile); ok {
+	if rf, ok := ret.Get(0).(func(any) []configmodels.GeneratedTile); ok {
 		r0 = rf(params)
 	} else {
 		if ret.Get(0) != nil {
@@ -97,7 +97,7 @@ func (_m *Usecase) MergeRequestsGenerator(params interface{}) ([]configmodels.Ge
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(interface{}) error); ok {
+	if rf, ok := ret.Get(1).(func(any) error); ok {
 		r1 = rf(params)
 	} else {
 		r1 = ret.Error(1)

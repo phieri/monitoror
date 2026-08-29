@@ -41,7 +41,7 @@ func (pu *uptimecomUsecase) Check(params *uptimecomModels.CheckParams) (tile *mo
 	return
 }
 
-func (pu *uptimecomUsecase) CheckGenerator(params interface{}) ([]uiConfigModels.GeneratedTile, error) {
+func (pu *uptimecomUsecase) CheckGenerator(params any) ([]uiConfigModels.GeneratedTile, error) {
 	panic("unimplemented")
 }
 

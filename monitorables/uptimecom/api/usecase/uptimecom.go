@@ -77,7 +77,7 @@ func (pu *uptimecomUsecase) check(checkID int) (*coreModels.Tile, error) {
 	return tile, nil
 }
 
-func (pu *uptimecomUsecase) CheckGenerator(params interface{}) ([]uiConfigModels.GeneratedTile, error) {
+func (pu *uptimecomUsecase) CheckGenerator(params any) ([]uiConfigModels.GeneratedTile, error) {
 	cParams := params.(*models.CheckGeneratorParams)
 	return pu.checkGenerator(cParams.Tags, cParams.SortBy)
 }

@@ -20,6 +20,6 @@ type (
 		Pipeline(params *models.PipelineParams) (*coreModels.Tile, error)
 		MergeRequest(params *models.MergeRequestParams) (*coreModels.Tile, error)
 
-		MergeRequestsGenerator(params interface{}) ([]uiConfigModels.GeneratedTile, error)
+		MergeRequestsGenerator(params any) ([]uiConfigModels.GeneratedTile, error)
 	}
 )

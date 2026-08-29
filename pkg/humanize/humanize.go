@@ -8,7 +8,7 @@ import (
 )
 
 // Interface transform interface to string
-func Interface(value interface{}) string {
+func Interface(value any) string {
 	// TODO handle slice properly if needed
 	if reflect.TypeOf(value).Kind() == reflect.Ptr {
 		rValue := reflect.ValueOf(value)

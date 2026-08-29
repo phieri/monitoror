@@ -246,7 +246,7 @@ func (cu *configUsecase) verifyTile(configBag *models.ConfigBag, tile *models.Ti
 	rType := reflect.TypeOf(variantMetadataExplorer.GetValidator())
 	rInstance := reflect.New(rType.Elem()).Interface()
 
-	// Marshal / Unmarshal the map[string]interface{} struct in new instance of ParamsValidator
+	// Marshal / Unmarshal the map[string]any struct in new instance of ParamsValidator
 	bytesParams, _ := json.Marshal(tile.Params)
 	if unmarshalErr := json.Unmarshal(bytesParams, &rInstance); unmarshalErr != nil {
 		configBag.AddErrors(models.ConfigError{
@@ -260,8 +260,8 @@ func (cu *configUsecase) verifyTile(configBag *models.ConfigBag, tile *models.Ti
 		return
 	}
 
-	// Marshal / Unmarshal instance of validator into map[string]interface{} to identify unknown fields
-	structParams := make(map[string]interface{})
+	// Marshal / Unmarshal instance of validator into map[string]any to identify unknown fields
+	structParams := make(map[string]any)
 	bytesParamInstance, _ := json.Marshal(rInstance)
 	_ = json.Unmarshal(bytesParamInstance, &structParams)
 
@@ -306,7 +306,7 @@ func (cu *configUsecase) verifyTile(configBag *models.ConfigBag, tile *models.Ti
 }
 
 // validateStruct Validate struct with "validate" and "available" tag
-func validateStruct(s interface{}, version *versions.ConfigVersion) []validator.Error {
+func validateStruct(s any, version *versions.ConfigVersion) []validator.Error {
 	var errors []validator.Error
 
 	// use "available" tag in struct definition to validate params
@@ -318,7 +318,7 @@ func validateStruct(s interface{}, version *versions.ConfigVersion) []validator.
 }
 
 // convertValidatorError into models.ConfigError
-func convertValidatorError(vError validator.Error, instance interface{}, configExtract string) *models.ConfigError {
+func convertValidatorError(vError validator.Error, instance any, configExtract string) *models.ConfigError {
 	configError := &models.ConfigError{Data: models.ConfigErrorData{}}
 
 	// Convert error ID

@@ -36,7 +36,7 @@ func init() {
 	untilSubTagRegexp = regexp.MustCompile(`^until=([0-9]+\.[0-9]+)$`)
 }
 
-func Struct(s interface{}, version *versions.ConfigVersion) []pkgValidator.Error {
+func Struct(s any, version *versions.ConfigVersion) []pkgValidator.Error {
 	var errors []pkgValidator.Error
 
 	// Iterate over struct fields but don't go deep inside sub field.

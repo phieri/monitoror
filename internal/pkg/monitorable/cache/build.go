@@ -23,7 +23,7 @@ func NewBuildCache(size int) *BuildCache {
 	return &BuildCache{maxSize: size, previousBuilds: cmap.New()}
 }
 
-func (c *BuildCache) GetEstimatedDuration(key interface{}) *time.Duration {
+func (c *BuildCache) GetEstimatedDuration(key any) *time.Duration {
 	k := fmt.Sprint(key)
 	value, ok := c.previousBuilds.Get(k)
 	if !ok {
@@ -41,7 +41,7 @@ func (c *BuildCache) GetEstimatedDuration(key interface{}) *time.Duration {
 }
 
 // Get Previous Status excludes current status in case of multiple call with the same current build
-func (c *BuildCache) GetPreviousStatus(key interface{}, id string) *models.TileStatus {
+func (c *BuildCache) GetPreviousStatus(key any, id string) *models.TileStatus {
 	k := fmt.Sprint(key)
 	value, ok := c.previousBuilds.Get(k)
 	if !ok {
@@ -60,7 +60,7 @@ func (c *BuildCache) GetPreviousStatus(key interface{}, id string) *models.TileS
 	return &previous.status
 }
 
-func (c *BuildCache) Add(key interface{}, id string, s models.TileStatus, d time.Duration) {
+func (c *BuildCache) Add(key any, id string, s models.TileStatus, d time.Duration) {
 	k := fmt.Sprint(key)
 	// If cache is not found, create it
 	var builds []build

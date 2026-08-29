@@ -92,7 +92,7 @@ func (hu *httpUsecase) httpAll(tileType coreModels.TileType, params models.Gener
 		}
 
 		// Select Unmarshaller
-		var unmarshaller func(data []byte, v interface{}) error
+		var unmarshaller func(data []byte, v any) error
 		if formattedParamsProvider.GetFormat() == models.JSONFormat ||
 			formattedParamsProvider.GetFormat() == models.XMLFormat {
 			unmarshaller = json.Unmarshal
@@ -100,7 +100,7 @@ func (hu *httpUsecase) httpAll(tileType coreModels.TileType, params models.Gener
 			unmarshaller = yaml.Unmarshal
 		}
 
-		var data interface{}
+		var data any
 		err := unmarshaller(response.Body, &data)
 		if err != nil {
 			tile.Status = coreModels.FailedStatus
@@ -189,9 +189,9 @@ func matchRegex(params models.RegexParamsProvider, str string) (bool, string) {
 	return true, substrings[1]
 }
 
-// extractValue extract value from interface{} (json/yaml/...)
+// extractValue extract value from any (json/yaml/...)
 // the key is in doted format like this ".bloc1."bloc.2".[2].value"
-func lookupKey(params models.FormattedParamsProvider, data interface{}) (bool, string) {
+func lookupKey(params models.FormattedParamsProvider, data any) (bool, string) {
 	// split key
 	matchedString := KeySplitterRegex.FindAllStringSubmatch(params.GetKey(), -1)
 
@@ -203,7 +203,7 @@ func lookupKey(params models.FormattedParamsProvider, data interface{}) (bool, s
 		if len(r) == 2 {
 			arrayIndex, _ := strconv.Atoi(r[1])
 			// Look if data type is array and check if index wasn't out of bounds
-			if array, ok := data.([]interface{}); ok && len(array) > arrayIndex && arrayIndex >= 0 {
+			if array, ok := data.([]any); ok && len(array) > arrayIndex && arrayIndex >= 0 {
 				data = array[arrayIndex]
 				continue
 			}
@@ -213,16 +213,16 @@ func lookupKey(params models.FormattedParamsProvider, data interface{}) (bool, s
 		// Lookup for map
 		keyPart = strings.ReplaceAll(keyPart, `"`, ``)
 
-		// map[string]interface{} => JSON Style
-		if m, ok := data.(map[string]interface{}); ok {
+		// map[string]any => JSON Style
+		if m, ok := data.(map[string]any); ok {
 			// Check if keyPart is in map
 			if value, ok := m[keyPart]; ok {
 				data = value
 				continue
 			}
 		}
-		// map[interface{}]interface{} => YAML Style
-		if m, ok := data.(map[interface{}]interface{}); ok {
+		// map[any]any => YAML Style
+		if m, ok := data.(map[any]any); ok {
 			// Check if keyPart is in map
 			if value, ok := m[keyPart]; ok {
 				data = value

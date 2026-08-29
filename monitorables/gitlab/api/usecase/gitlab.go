@@ -162,7 +162,7 @@ func (gu *gitlabUsecase) MergeRequest(params *models.MergeRequestParams) (*coreM
 	return tile, nil
 }
 
-func (gu *gitlabUsecase) computePipeline(params interface{}, tile *coreModels.Tile, pipeline *models.Pipeline) {
+func (gu *gitlabUsecase) computePipeline(params any, tile *coreModels.Tile, pipeline *models.Pipeline) {
 	tile.Status = parseStatus(pipeline.Status)
 
 	// Set Previous Status
@@ -204,7 +204,7 @@ func (gu *gitlabUsecase) computePipeline(params interface{}, tile *coreModels.Ti
 	}
 }
 
-func (gu *gitlabUsecase) MergeRequestsGenerator(params interface{}) ([]uiConfigModels.GeneratedTile, error) {
+func (gu *gitlabUsecase) MergeRequestsGenerator(params any) ([]uiConfigModels.GeneratedTile, error) {
 	prParams := params.(*models.MergeRequestGeneratorParams)
 
 	mergeRequests, err := gu.repository.GetMergeRequests(*prParams.ProjectID)

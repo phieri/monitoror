@@ -119,7 +119,7 @@ func (tu *jenkinsUsecase) Build(params *models.BuildParams) (*coreModels.Tile, e
 	return tile, nil
 }
 
-func (tu *jenkinsUsecase) BuildGenerator(params interface{}) ([]uiConfigModels.GeneratedTile, error) {
+func (tu *jenkinsUsecase) BuildGenerator(params any) ([]uiConfigModels.GeneratedTile, error) {
 	mbParams := params.(*models.BuildGeneratorParams)
 
 	job, err := tu.repository.GetJob(mbParams.Job, "")
